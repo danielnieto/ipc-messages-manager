@@ -1,6 +1,6 @@
 {
   "name": "ipc-messages-manager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Manage parent to child process (IPC) messages to be used as functions with callbacks",
   "main": "index.js",
   "scripts": {
