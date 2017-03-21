@@ -1,13 +1,13 @@
 # ipc-messages-manager
 Manage communication between parent and child processes through IPC asynchronously in NodeJS.
 
-##Why?
+## Why?
 
 When trying to use child process' functions from the parent process, you need to set up a bunch of listeners on both sides, and if you need to get a response to a specific function call asynchronously forget about it. Listening for messages does not allow to identify which response corresponds to which request(call to a child's function).
 
 This packages solves this problem, allows you to easily call a function on a child process spawned with `child_process.spawn()`, and have a `callback` for it.
 
-###Problem to solve:
+### Problem to solve:
 
 (on parent process)
 
@@ -26,7 +26,7 @@ child.on("message", function(reponse){
 
 ```
 
-##How to use it?
+## How to use it?
 
 1.- Install it in your project:
 
@@ -80,36 +80,36 @@ ipcManager_child.setActions({
 });
 ```
 
-##Parent's API
-###send(child, action, args, callback)
+## Parent's API
+### send(child, action, args, callback)
 
-####child
+#### child
 Type: `child_process` <br>
 
 The child process to whom it will send the message, it should be a process spawned with `child_process.spawn()` method and with an IPC channel already setup
 
-####action
+#### action
 Type: `String` <br>
 
 A string to identify the action that needs to be performed on the child instance and answer back to the parent. For example, let's say the child has a `addTwoNumbers()` function and the parent wants to call it, then it is suggested to set `action` to be `addTwoNumbers` to make logical sense, but it's not required.
 
-####args
+#### args
 Type: `Object` <br>
 
 An object containing the arguments needed to perform "action". These arguments can later be retrieved on the child's listener function. In the example above for action `addTwoNumbers`, this `args` object could be something like `{number1: 5, number2: 10}`.
 
-###callback([response])
+### callback([response])
 Type: `Function` <br>
 
 Function to be called when the child responds back with an answer to this action(message)
 
 The `response` object will be what the child sent back.
 
-##Child's API
+## Child's API
 
-###setActions(actions)
+### setActions(actions)
 
-####actions
+#### actions
 Type: `Object` <br>
 
 An object containing each action as keys and the value is the function that's going to be executed when that action is requested.
@@ -132,7 +132,7 @@ anotherAction: function(argsm callback){
 }
 ```
 
-###ipcManager_child.actions
+### ipcManager_child.actions
 
 Alternatively you can listen (and respond) for specific actions with the `ipcManager_child.actions` EventEmitter by listening with the `on` method in the following way:
 
